@@ -2,8 +2,8 @@ import pandas as pd
 import glob
 ## excel dosyalarının bulunduğu klasörün dizin bilgisi inputpath kısmına yazılacak
 ## oluşturulan çıktıların kaydedileceği dizin outputpath kısmına yazılacak
-inputpath = "/Users/tahayasinorhan/PycharmProjects/sadeyazilim/venv/inputexcel/"
-outputpath = "/Users/tahayasinorhan/PycharmProjects/sadeyazilim/venv/outputexcel/"
+inputpath = r"C:/Users/Ahmet Yanık/PycharmProjects/untitled6/venv/inputexcel"
+outputpath = r"C:/Users/Ahmet Yanık/PycharmProjects/untitled6/venv/outputexcel"
 excelpath = glob.glob(inputpath+"*.xlsx")
 for excel in excelpath:
     filename = excel.split("/")[-1][:-5]
