@@ -2,11 +2,13 @@ import pandas as pd
 import glob
 ## excel dosyalarının bulunduğu klasörün dizin bilgisi inputpath kısmına yazılacak
 ## oluşturulan çıktıların kaydedileceği dizin outputpath kısmına yazılacak
-inputpath = r"C:/Users/Ahmet Yanık/PycharmProjects/untitled6/venv/inputexcel"
-outputpath = r"C:/Users/Ahmet Yanık/PycharmProjects/untitled6/venv/outputexcel"
+inputpath = r"C:\\Users\\Ahmet\\PycharmProjects\\untitled6\\venv\\inputexcel\\"
+outputpath = r"C:\\Users\\Ahmet\\PycharmProjects\\untitled6\\venv\\outputexcel\\"
 excelpath = glob.glob(inputpath+"*.xlsx")
+print(excelpath)
 for excel in excelpath:
-    filename = excel.split("/")[-1][:-5]
+    print(excel)
+    filename = excel.split('\\')[-1][:-5]
     dfmev = pd.read_excel(excel)
     dfmev = dfmev.drop(['Sıra No'], axis=1)
     dfsonuc = pd.DataFrame(columns=['UrunKodu','UrunAdi','SiniflandirmaKod','SiniflandirmaDeger'])
