@@ -196,6 +196,7 @@ for j in range(0,len(df['Ürün Adı'])):
                                           "/html/body/main/div[4]/div[2]/div[1]/div/div/div[1]/div[1]/div/div[" + str(
                                               i + 1) + "]/div/div/span/img")
 
+
                 print(i)
             except selenium.common.exceptions.NoSuchElementException:
                 print("bitti")
@@ -209,20 +210,29 @@ for j in range(0,len(df['Ürün Adı'])):
     elif url.split("//")[1][4] == 'e':
         driver.get(url)
 
-        asd = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[5]/span[2]')
+        asd = driver.find_element(By.XPATH, '//*[@id="cookie_agree"]')
         asd.click()
         time.sleep(10)
+        driver.execute_script("window.scrollBy(0, 1000);")
 
         for i in range(0, 5):
             try:
-                asd = driver.find_elements(By.CLASS_NAME,
-                                          "galerim")
+                asd = driver.find_element(By.XPATH,
+                                          "/html/body/div[1]/div/div[4]/div[1]/div[2]/div[1]/div/div[1]/ul/li[" + str(
+                                              i + 1) + "]/a/img")
+
+
+
 
                 print(i)
             except selenium.common.exceptions.NoSuchElementException:
+                asd = driver.find_element(By.XPATH,
+                                          "/html/body/div[1]/div/div[4]/div[1]/div[2]/div[1]/div/div[1]/ul/li/a/img")
                 print("bitti")
-                break
-            src = asd[i].get_attribute("src")
+                if i>0:
+                    break
+            src = asd.get_attribute("src")
+            src=src.replace("/s_", "/b_")
             print(src)
             df.at[j, 'Görsel'+str(i+1)]=src
         driver.quit()
