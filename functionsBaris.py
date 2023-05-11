@@ -14,16 +14,14 @@ def karaca(link_par):
 
 #https://www.cimri.com/
 def cimri(link_par):
-    scraper = WebScrappingDriver()
-    scraper.scrap_data(link_par)
-    scraper.click_By_xpath('//*[@id="main_container"]/div/div[3]/div[2]/div[1]/div[2]/div/div[1]/ul/li[1]/img')
-    soup = scraper.get_page_source_soup()
-    scraper.quit_driver()
-
-    photos = soup.find_all("div",{"class":"s75m7lh-0 qYSgN"})
-    for i in photos[:5]:
-        print(i.find("img")['src'])
-
+    soup = request_n_soup(link_par)
+    photos = soup.find("ul",{"class":"s1wxq1uo-1 hnSmng"}).find_all("li",{"class":"s1wxq1uo-2 iVTokt"})
+    for index, i in enumerate(photos[:5]):
+        img = i.find("img",{"class":"s51lp5-0 iRZUoF"})
+        if(index == 0):
+            print(img['src'].replace("240x240","1000x1000"))
+        else:
+            print(img['data-src'].replace("240x240","1000x1000"))
 
 #https://www.pazarama.com/
 def pazarama(link_par):
