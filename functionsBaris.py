@@ -155,3 +155,33 @@ def hepsiburada(link_par):
     for i in photos[1:5]:
         print(i.find("source")['data-srcset'].split(" ")[0])
 #----------------------------------------------------
+
+#https://www.garmin.com.tr/
+def garmintr(link_par):
+    soup = request_n_soup(link_par)
+    photos = soup.find_all("div",{"class":"swiper-wrapper"})[1].find_all("img",{"class":"w-100"})
+
+    for i in photos[:5]:
+        print(i["src"])
+#----------------------------------------------------
+
+#www.bosch-home.com.tr
+def bosch_home_tr(link_par):
+    soup = request_n_soup(link_par)
+    photos = soup.find("div",{"class":"mediagallery-wrapper"}).find_all("div",{"class":"a-image"})#.find("div",{"class":"slide mediagallery-slide slick-slide slide-initialized slick-current slick-active"})#[1].find_all("img",{"class":"w-100"})
+
+    for i in photos[:5]:
+        img = i.find("img")["src"].split("/")
+        img[4] = "2000x2000"
+        img_new = "/".join(img)
+        print(img_new)
+#----------------------------------------------------
+
+#www.beko.com.tr
+def beko_tr(link_par):
+    soup = request_n_soup(link_par)
+    photos = soup.find_all("div",{"class":"swiper-zoom-container"})#[1].find_all("img",{"class":"w-100"})
+
+    for i in photos[:5]:
+        print("https://www.beko.com.tr" + i.find("img")['data-srcset'].split(" ")[-2])
+#----------------------------------------------------
