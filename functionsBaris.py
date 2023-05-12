@@ -1,3 +1,23 @@
+import requests
+from bs4 import BeautifulSoup
+
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36'}
+
+#FUNCTIONS
+def request_n_soup_special_for_epey(link,header):
+    pageSource = requests.get(link, headers=header).content
+    soup = BeautifulSoup(pageSource,"html.parser")
+    return soup
+
+def epey(link):
+    soup = request_n_soup_special_for_epey(link,headers)
+    photos = soup.find("ul",{"class":"galerik"}).find_all("img")
+    for m in photos:
+        divide_img = m['src'].split("/")
+        divide_img[-1] = "b" + divide_img[-1][1:]
+        img = "/".join(divide_img)
+        print(img)
+ 
 #https://www.ugur.com.tr/
 def ugurDerinDondurucu(link_par):
     soup = request_n_soup(link_par)
