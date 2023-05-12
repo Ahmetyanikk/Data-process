@@ -144,3 +144,14 @@ def amazontr(link_par):
     except:
         scraper.quit_driver()
 #----------------------------------------------------
+
+#www.hepsiburada.com
+def hepsiburada(link_par):
+    soup = request_n_soup(link_par)
+    photos = soup.find("div",{"id":"productDetailsCarousel"}).find_all("picture")
+    #ilk img
+    print(photos[0].find("source")['srcset'].split(" ")[0])
+    #kalan imgler
+    for i in photos[1:5]:
+        print(i.find("source")['data-srcset'].split(" ")[0])
+#----------------------------------------------------
