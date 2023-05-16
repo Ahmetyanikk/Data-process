@@ -126,19 +126,22 @@ for excel in excelpath:
             time.sleep(10)
 
             driver.execute_script("window.scrollBy(0, 1000);")
-            for i in range(0, 1):
+            for i in range(0, 5):
                 try:
-                    asd = driver.find_element(By.XPATH, "/html/body/main/div[1]/div/div[2]/a/img")
+                    asd = driver.find_element(By.XPATH,
+                                              "/html/body/main/div[1]/div/div[2]/div[2]/a["+str(i+1)+"]/img")
 
                     print(i)
                 except selenium.common.exceptions.NoSuchElementException:
+                    asd = driver.find_element(By.XPATH,
+                                              "/html/body/main/div[1]/div/div[2]/div[2]/a/img")
                     print("bitti")
-                    break
+                    if i > 0:
+                        break
                 src = asd.get_attribute("src")
                 print(src)
                 response = requests.get(src)
-                with open(filename + str(i + 1) + ".jpg", "wb") as f:
-                    f.write(response.content)
+            df.at[j, 'Görsel' + str(i + 1)] = src
 
         elif mainUrl == 'happycenter':
 
