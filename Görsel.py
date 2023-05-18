@@ -123,9 +123,9 @@ for excel in excelpath:
 
             driver.get(url)
 
-            time.sleep(10)
+            time.sleep(5)
 
-            driver.execute_script("window.scrollBy(0, 1000);")
+            
             for i in range(0, 5):
                 try:
                     asd = driver.find_element(By.XPATH,
